@@ -1,4 +1,4 @@
-{% load static %}
+{% extends 'myapp/base.html' %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,9 +8,15 @@
 </head>
 <body>
 
+{#{% block content %}  if we use this then we have to make this similar in base.html too#}
+{% block body %}
+
+
 <h1>This is a detail page for </h1>
 <h1>{{ product.name }}</h1>
 <h2>{{ product.price }}</h2>
 <h3>{{ product.desc }}</h3>
+
+{% endblock %}
 </body>
 </html>
