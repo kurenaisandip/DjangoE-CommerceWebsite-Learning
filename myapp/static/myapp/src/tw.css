@@ -1,0 +1,6 @@
+/*so in here wew are not going to have any css code but instead we are going to be using some element directives here and those*/
+/*directives are actualy going to be then compiled to CSS file*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

@@ -1,0 +1,38 @@
+
+
+
+
+
+
+    <nav class="bg-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <div>
+                        <a href="" class="flex items-center px-2 py-4">
+                            <img class="h-10 w-8" src="{% static 'myapp/images/shopping.png' %}" alt="logo">
+                            <span class="text-red-500 font-semibold text-lg">Buy&Sell</span>
+                        </a>
+                    </div>
+                    <div class="item-center flex space-x-1">
+                        <a href="" class="py-4 px-2 text-gray-500 font-semibold border-b-4 border-green-500">Home</a>
+                        <a href="" class="py-4 px-2 text-gray-500 font-semibold">About</a>
+                        <a href="" class="py-4 px-2 text-gray-500 font-semibold">Contact</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+{#{{ products }}    {# This shows in query set  #}
+{% for product in products %}
+{#    <a href="/myapp/product/{{ product.id }}">  hardcoded url#}
+{#    <a href="{% url 'product_detail'  product.id %}"> #}
+    <a href="{% url 'myapp:product_detail'  product.id %}"> {#   This is using the namespaing and no space between myapp: and productdetails #}
+{{ product.name }} =>
+{{ product.price }} =>
+{{ product.desc }} <br>
+    </a>
+{%  endfor %}   {# To end the loop  #}
+
