@@ -7,6 +7,7 @@ class Products(models.Model):
     name = models.CharField(max_length=100)
     price = models.IntegerField()
     desc = models.CharField(max_length= 200)
+    image = models.ImageField(blank=True, upload_to='images')
 
 # The process of translating this Django model in to database table is known as migration
 #  The problem is that when we are performing migration, we are performing inthe main file(mysite) folder

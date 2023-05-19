@@ -3,18 +3,52 @@
 
 {% block body %}
 
+    <!-- Site hero starts here -->
+    <main class="mt-10 max-auto max-w-7xl px-4">
+    <div class="sm:text-center  lg:text:left">
+        <h1 class="text-4xl font-extrabold text-grey-900 sm:text-5xl md:text-6xl">
+            <span class="block xl:inline">Premium Products </span>
+            <span class="blcok text-gree-500 xl:inline">Non Premium Prices</span>
+        </h1>
+        <p>Get the best used quality product in globe, free shipping</p>
+    </div>
+    </main>
+    <!-- Site hero ends here -->
 
-{#{{ products }}    {# This shows in query set  #}
-{% for product in products %}
-{#    <a href="/myapp/product/{{ product.id }}">  hardcoded url#}
-{#    <a href="{% url 'product_detail'  product.id %}"> #}
-    <a href="{% url 'myapp:product_detail'  product.id %}"> {#   This is using the namespaing and no space between myapp: and productdetails #}
-{{ product.name }} =>
-{{ product.price }} =>
-{{ product.desc }} <br>
-    </a>
-{%  endfor %}   {# To end the loop  #}
+    <div class="p-10 grid grid-cols-1">
+    <!-- card 1 -->
+{#    #{{ products }}    {# This shows in query set  #}
+    {% for product in products %}
+        {#    <a href="/myapp/product/{{ product.id }}">  hardcoded url#}
+        {#    <a href="{% url 'product_detail'  product.id %}"> #}
+        <a href="{% url 'myapp:product_detail'  product.id %}"> {#   This is using the namespaing and no space between myapp: and productdetails #}
+            <div class="rounded overflow-hidden shadow-lg">
+                  <img class="w-full" src= "{{ product.image.url }}"  />
+                <div>
+                    <div>
+                        {{ product.name }}
+                    </div>
+                    <div>
+                               {{ product.price }}
+                    </div>
+                    <p>
+                          {{ product.desc }}
+                    </p>
+                </div>
+            </div>
 
+
+
+
+        </a>
+    {%  endfor %}   {# To end the loop  #}
+
+
+
+    </div>
+
+
+{
 
 
 {% endblock %}
