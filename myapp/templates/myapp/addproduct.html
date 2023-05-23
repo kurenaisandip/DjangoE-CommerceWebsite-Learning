@@ -1,18 +1,69 @@
+{% extends 'myapp/base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Add Products</title>
+
 </head>
 <body>
-<form method="post" enctype="multipart/form-data">
+{% block body %}
+{#    <h1 class="text-2xl font-bold m-10">➕Add Product</h1>#}
+{#<form class="w-3/5 bg-white shadow-md m-10 px-8 py-8" method="post" enctype="multipart/form-data">#}
+{#    {% csrf_token %}#}
+{#    <div class="mb-4">#}
+{#        <label class="block text-gray-700 text-sm font-bol  mb-2" for="">Product Name</label>#}
+{#        <input class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700" type="text" placeholder="Samsung" name="name" id="name">#}
+{#    </div>#}
+{##}
+{#    <div class="mb-4">#}
+{#          <label class="block text-gray-700 text-sm font-bol  mb-2" for="">Product Price</label>#}
+{#        <input class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700"  type="text" placeholder="500000" name="price" id="price">#}
+{#    </div>#}
+{#    <div class="mb-4">#}
+{#          <label class="block text-gray-700 text-sm font-bol  mb-2" for="">Product description</label>#}
+{#        <input class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700" type="text" placeholder="This is a samsung smart phone" name="desc" id="desc">#}
+{#    </div>#}
+{#    <div class="mb-4">#}
+{#          <label class="block text-gray-700 text-sm font-bol  mb-2" for="">Product Image</label>#}
+{#        <input class="  py-2 px-3 mr-10 " type="file" accept="image/*" name="upload" id="upload">#}
+{#    </div>#}
+{#    <div class="mb-4">#}
+{##}
+{#         <input class="bg-green-500 text-white px-5 py-2" type="submit" value="Add Product" name="Add Product">#}
+{#    </div>#}
+{#</form>#}
+
+   <h1 style="font-size: 1.5rem; font-weight: bold; margin: 1rem 0;">➕Add Product</h1>
+<form style="width: 60%; background-color: #fff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); margin: 2.5rem; padding-left: 2rem; padding-right: 2rem; padding-top: 2rem; padding-bottom: 2rem;" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <input type="text" placeholder="Name" name="name" id="name">
-    <input type="text" placeholder="Price" name="price" id="price">
-    <input type="text" placeholder="Description" name="desc" id="desc">
-    <input type="file" accept="image/*" name="upload" id="upload">
-    <input type="submit" value="Add Product" name="Add Product">
+    <div style="margin-bottom: 1rem;">
+        <label style="display: block; color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 1rem;" for="name">Product Name</label>
+        <input style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); -webkit-appearance: none; -moz-appearance: none; appearance: none; border-width: 1px; border-radius: 0.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem; margin-right: 2.5rem; color: #4a5568;" type="text" placeholder="Samsung" name="name" id="name">
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label style="display: block; color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 1rem;" for="price">Product Price</label>
+        <input style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); -webkit-appearance: none; -moz-appearance: none; appearance: none; border-width: 1px; border-radius: 0.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem; margin-right: 2.5rem; color: #4a5568;" type="text" placeholder="500000" name="price" id="price">
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label style="display: block; color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 1rem;" for="desc">Product Description</label>
+        <input style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); -webkit-appearance: none; -moz-appearance: none; appearance: none; border-width: 1px; border-radius: 0.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem; margin-right: 2.5rem; color: #4a5568;" type="text" placeholder="This is a Samsung smartphone" name="desc" id="desc">
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label style="display: block; color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 1rem;" for="upload">Product Image</label>
+        <input style="padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem; margin-right: 2.5rem;" type="file" accept="image/*" name="upload" id="upload">
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <input style="background-color: #48bb78; color: #fff; padding-left: 0.75rem; padding-right: 0.75rem; padding-top: 0.5rem; padding-bottom: 0.5rem; border: none; border-radius: 0.25rem; cursor: pointer;" type="submit" value="Add Product" name="Add Product">
+    </div>
 </form>
+
+
+{% endblock %}
 
 </body>
 </html>
