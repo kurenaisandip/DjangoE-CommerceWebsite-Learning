@@ -1,35 +1,58 @@
+{#{% extends 'myapp/base.html' %}#}
+{##}
+{#<!DOCTYPE html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <title>Detail page</title>#}
+{#</head>#}
+{#<body>#}
+{##}
+{#{% block content %}  if we use this then we have to make this similar in base.html too#}
+{#{% block body %}#}
+{##}
+{#<div class="flex">#}
+{#<img src="{{ product.image.url }}" />#}
+{#    <div>#}
+{#        <div>#}
+{#{{ product.name }}#}
+{#        </div>#}
+{#        <div>#}
+{#{{ product.price }}#}
+{#        </div>#}
+{#        <div>#}
+{#            {{ product.desc }}#}
+{#        </div>#}
+{##}
+{#    </div>#}
+{#    <h1>This is a detail page for </h1>#}
+{##}
+{#</div>#}
+{##}
+{##}
+{#{% endblock %}#}
+{#</body>#}
+{#</html>#}
+
+
 {% extends 'myapp/base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Detail page</title>
-</head>
-<body>
-
-{#{% block content %}  if we use this then we have to make this similar in base.html too#}
 {% block body %}
 
 <div class="flex">
-<img src="{{ product.image.url }}" />
+    <img src="{{ product.image.url }}" />
     <div>
         <div>
-{{ product.name }}
+            {{ product.name }}
         </div>
         <div>
-{{ product.price }}
+            {{ product.price }}
         </div>
         <div>
             {{ product.desc }}
         </div>
-
     </div>
     <h1>This is a detail page for </h1>
-
 </div>
 
-
 {% endblock %}
-</body>
-</html>
