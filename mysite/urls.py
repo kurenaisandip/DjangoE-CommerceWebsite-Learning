@@ -19,9 +19,13 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from django.conf import  settings
 
+from myapp import views
+from django.contrib.auth import views as authentication_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('myapp/', include('myapp.urls')),
+    path('register/', views.register, name='register'),
+    path('login/', authentication_views.LoginView.as_view(), name='login')  #class based view: whenever we are using the classbased view, we need to need to mention the view
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
