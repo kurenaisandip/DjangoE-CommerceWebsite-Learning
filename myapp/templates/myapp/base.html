@@ -145,10 +145,17 @@
                         </a>
                     </div>
                     <div class="item-center flex space-x-1">
-                        <a href="" class="py-4 px-2 text-gray-500 font-semibold border-b-4 border-green-500">Home</a>
-                        <a href="" class="py-4 px-2 text-gray-500 font-semibold">About</a>
-                        <a href="" class="py-4 px-2 text-gray-500 font-semibold">Contact</a>
-                    </div>
+                <a href="" class="py-4 px-2 text-gray-500 font-semibold border-b-4 border-green-500">Home</a>
+    <a href="" class="py-4 px-2 text-gray-500 font-semibold">About</a>
+    <a href="" class="py-4 px-2 text-gray-500 font-semibold">Contact</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'users:logout' %}">Logout</a>
+        <a href="{% url 'users:profile' %}">Profile</a>
+    {% else %}
+        <a href="{% url 'users:login' %}">Login</a>
+    {% endif %}
+</div>
+
                 </div>
             </div>
         </div>
