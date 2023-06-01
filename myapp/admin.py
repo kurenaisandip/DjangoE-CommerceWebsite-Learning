@@ -1,17 +1,21 @@
 from django.contrib import admin
 from .models import Products
 
+
+
+admin.site.site_header = "Buy and Sell Website"
+admin.site.site_title = "Sandip Buying"
+admin.site.index_title = "Manage Sandip Buying"
+
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ('name', 'price', 'desc')
+    search_fields = ('name',) # this always has to be tuples
+
+    def set_price_to_zero(self, request, queryset):
+        queryset.update(price=0)
+
+    actions = ('set_price_to_zero',)  # this always has to be tuples
+    list_editable = ('price', 'desc')
+
 # Register your models here.
-admin.site.register(Products)
-
-from django.shortcuts import render
-from django.http import HttpResponse
-# Create your views here.
-# def index(request):
-#     return HttpResponse("Hello World")
-#
-# def products(request):
-#     # products = ["iphone", "imac", "ipad"]
-#     products = Products.objects.all()  #so this is use to derive data from database
-#     return HttpResponse(products)
-
+admin.site.register(Products, ProductAdmin)
