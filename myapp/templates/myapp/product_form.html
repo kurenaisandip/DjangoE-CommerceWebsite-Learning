@@ -1,0 +1,61 @@
+{% extends 'myapp/base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Products</title>
+
+</head>
+<body>
+{% block body %}
+
+   <h1 style="font-size: 1.5rem; font-weight: bold; margin: 1rem 0;">➕Add Product</h1>
+<form style="width: 60%; background-color: #fff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); margin: 2.5rem; padding-left: 2rem; padding-right: 2rem; padding-top: 2rem; padding-bottom: 2rem;" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div style="margin-bottom: 1rem;">
+        <label style="display: block; color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 1rem;" for="name">Product Name</label>
+      <div  style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); -webkit-appearance: none; -moz-appearance: none; appearance: none; border-width: 1px; border-radius: 0.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem; margin-right: 2.5rem; color: #4a5568;" >
+              {{ form.name }}
+      </div>
+
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label style="display: block; color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 1rem;" for="price">Product Price</label>
+       <div  style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); -webkit-appearance: none; -moz-appearance: none; appearance: none; border-width: 1px; border-radius: 0.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem; margin-right: 2.5rem; color: #4a5568;" >
+              {{ form.price }}
+      </div>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label style="display: block; color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 1rem;" for="desc">Product Description</label>
+      <div  style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); -webkit-appearance: none; -moz-appearance: none; appearance: none; border-width: 1px; border-radius: 0.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem; margin-right: 2.5rem; color: #4a5568;" >
+              {{ form.desc }}
+      </div>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <label style="display: block; color: #4a5568; font-size: 0.875rem; font-weight: bold; margin-bottom: 1rem;" for="upload">Product Image</label>
+      <div  style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); -webkit-appearance: none; -moz-appearance: none; appearance: none; border-width: 1px; border-radius: 0.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem; margin-right: 2.5rem; color: #4a5568;" >
+              {{ form.image }}
+      </div>
+    </div>
+
+     <div style="margin-bottom: 1rem;">
+
+      <div  hidden="" style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); -webkit-appearance: none; -moz-appearance: none; appearance: none; border-width: 1px; border-radius: 0.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem; padding-left: 0.75rem; padding-right: 0.75rem; margin-right: 2.5rem; color: #4a5568;" >
+              {{ form.seller_name  }}
+      </div>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+        <input style="background-color: #48bb78; color: #fff; padding-left: 0.75rem; padding-right: 0.75rem; padding-top: 0.5rem; padding-bottom: 0.5rem; border: none; border-radius: 0.25rem; cursor: pointer;" type="submit" value="Add Product" name="Add Product">
+    </div>
+</form>
+
+
+{% endblock %}
+
+</body>
+</html>
+
