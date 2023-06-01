@@ -51,8 +51,17 @@
         <div>
             {{ product.desc }}
         </div>
+Posted by:
+        <a href="{% url 'users:sellerprofile'  product.seller_name.id %}">
+           <div>
+            {{ product.seller_name }}
+        </div>
+            </a>
+        <div>Contact Number:
+            {{ product.seller_name.profile.contact_number }}
+        </div>
     </div>
-    <h1>This is a detail page for </h1>
+
 </div>
 
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
@@ -75,3 +76,10 @@ def create_profile(request):
             return HttpResponse("Error: Profile already exists")
 
     return render(request, 'users/createprofile.html')
+
+def seller_profile(request, id):
+    seller = User.objects.get(id=id)
+    context = {
+        'seller':seller,
+    }
+    return render(request, 'users/sellerprofile.html', context)
