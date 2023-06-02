@@ -4,38 +4,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
 </head>
 <body>
-
-{% block body %}
- <h1 style="font-size: 2rem; margin: 10px 0; font-weight: bold;">😁 Login User</h1>
-    <div style="padding-top: 5rem;">
-        <form method="post" style="width: 40%; background-color: white; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); margin: 10px; border-radius: 0.25rem; padding: 1.25rem;">
-            {% csrf_token %}
-            <div style="margin-bottom: 0.5rem;">
-                <label style="display: block; color: #4b5563; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Username</label>
-                <div style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); border-radius: 0.375rem; padding: 0.5rem 0.75rem; margin-right: 1.25rem; color: #4b5563;">
-                    {{ form.username }}
-                </div>
+{% block content %}
+<h1 class="text-2xl m-10 font-bold">👱🏻‍♂️ Login User</h1>
+<div class="container py-5">
+    <form class="w-2/5 bg-white shadow-md m-10 rounded px-8 pt-6 pb-8 mb-4" method="post">
+        {% csrf_token %}
+        <div class="mb-2">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Username</label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700 leading-tight">
+                {{ form.username }}
             </div>
+        </div>
 
 
-            <div style="margin-bottom: 0.5rem;">
-                <label style="display: block; color: #4b5563; font-size: 0.875rem; font-weight: bold; margin-bottom: 0.5rem;">Password</label>
-                <div style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); border-radius: 0.375rem; padding: 0.5rem 0.75rem; margin-right: 1.25rem; color: #4b5563;">
-                    {{ form.password}}
-                </div>
+
+
+        <div class="mb-2">
+            <label class="block text-gray-700 text-sm font-bold mb-2" for="">Password</label>
+            <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700 leading-tight">
+                {{ form.password }}
             </div>
+        </div>
 
 
-            <div style="margin-bottom: 0.5rem;">
-                <button type="submit" style="background-color: green; color: white; font-weight: bold; padding: 0.5rem 1rem; border-radius: 0.25rem; cursor: pointer; border: none;">
-                    Login
-                </button>
-            </div>
-        </form>
-    </div>
+        <button class="bg-green-500 text-white px-5 py-2" type="submit" >Login</button>
+    </form>
+
+    <div class="m-10">Do not have an account ?  <a class="text-indigo-500" href="{% url 'users:register' %}">Register</a></div>
+
+</div>
+
 {% endblock %}
 </body>
 </html>
+
+

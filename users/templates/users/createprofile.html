@@ -1,118 +1,33 @@
 {% extends 'myapp/base.html' %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Profile</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
-        .bg-white {
-            background-color: #fff;
-        }
-
-        .shadow-md {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        .m-10 {
-            margin: 2.5rem;
-        }
-
-        .w-3\/5 {
-            width: 60%;
-        }
-
-        .rounded {
-            border-radius: 0.25rem;
-        }
-
-        .px-8 {
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .pt-6 {
-            padding-top: 1.5rem;
-        }
-
-        .pb-8 {
-            padding-bottom: 2rem;
-        }
-
-        .mb-4 {
-            margin-bottom: 1rem;
-        }
-
-        .py-2 {
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-        }
-
-        .shadow {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        }
-
-        .apperance-none {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-
-        .border {
-            border-width: 1px;
-            border-style: solid;
-            border-color: #e2e8f0;
-        }
-
-        .text-gray-700 {
-            color: #4a5568;
-        }
-
-        .py-3 {
-            padding-top: 0.75rem;
-            padding-bottom: 0.75rem;
-        }
-
-        .mr-10 {
-            margin-right: 2.5rem;
-        }
-
-        .bg-green-500 {
-            background-color: #48bb78;
-        }
-
-        .text-white {
-            color: #fff;
-        }
-
-        .px-5 {
-            padding-left: 1.25rem;
-            padding-right: 1.25rem;
-        }
-
-        .py-2 {
-            padding-top: 0.5rem;
-            padding-bottom: 0.5rem;
-        }
-    </style>
 </head>
 <body>
-{% block body %}
-<form method="post" enctype="multipart/form-data" style="background-color: #fff; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); margin: 2.5rem; width: 60%; border-radius: 0.25rem; padding-left: 2rem; padding-right: 2rem; padding-top: 1.5rem; padding-bottom: 2rem;">
-{% csrf_token %}
-    <div style="margin-bottom: 1rem;">
-        <label for="upload">Upload Profile Image</label>
-        <input style="padding-top: 0.5rem; padding-bottom: 0.5rem;" type="file" accept="image/*" name="upload" id="upload" placeholder="Upload a clear profile image">
-    </div>
-    <div style="margin-bottom: 1rem;">
-        <label for="number">Contact Number</label>
-        <input style="box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); -webkit-appearance: none; -moz-appearance: none; appearance: none; border-width: 1px; border-style: solid; border-color: #e2e8f0; color: #4a5568; padding-top: 0.75rem; padding-bottom: 0.75rem; margin-right: 2.5rem;" type="number"  name="number" id="number" placeholder="987667675765">
-    </div>
-    <button style="background-color: #48bb78; color: #fff; padding-left: 1.25rem; padding-right: 1.25rem; padding-top: 0.5rem; padding-bottom: 0.5rem;" name="add" value="add" >Add</button>
-</form>
+{% block content %}
+    <form method="post" enctype="multipart/form-data" class="bg-white shadow-md m-10 w-3/5 rounded px-8 pt-6 pb-8 mb-4">
+        {% csrf_token %}
+        <div class="mb-4">
+            <label for="">Upload profile image</label>
+            <input class="py-2" placeholder="Upload a clear profile image" type="file" accept="image/*" name="upload" id="upload">
+        </div>
+        <div class="mb-4">
+            <label for="">Contact Number</label>
+            <input class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700" placeholder="9999999999" type="text" accept="image/*" name="contact_number" id="contact_number">
+
+        </div>
+        <input class="bg-green-500 text-white px-5 py-2" name="Add" value="Add" type="submit">
+    </form>
 {% endblock %}
+
 </body>
 </html>
+
+
