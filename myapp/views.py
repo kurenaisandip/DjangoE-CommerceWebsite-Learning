@@ -8,15 +8,15 @@ from django.urls import reverse, reverse_lazy
 from django.core.paginator import Paginator
 
 from django.http.response import HttpResponseNotFound, JsonResponse
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404 # SO THIS Tries to get objects from a particular model and if the objects are not found then it will return a photo for error
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 import json
 
-from myapp.models import Product
+from myapp.models import Product, OrderDetail
 
 
-# import stripe
+import stripe
 
 
 # Create your views here.
@@ -61,7 +61,7 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = 'myapp/detail.html'
     context_object_name = 'product'
-    pk_url_kwarg = 'pk'
+    pk_url_kwarg = 'pk'  #keyword argument
 
     def get_context_data(self, **kwargs):
         context = super(ProductDetailView, self).get_context_data(**kwargs)
@@ -155,8 +155,8 @@ def my_listings(request):
 #                 'quantity': 1,
 #             }
 #         ],
-#         mode='payment',
-#         success_url=request.build_absolute_uri(reverse('myapp:success')) + "?session_id={CHECKOUT_SESSION_ID}",
+#         mode='payment', #what this does is it defines what kind of payment is this, is it subscription or one time payment
+#         success_url=request.build_absolute_uri(reverse('myapp:success')) + "?session_id={CHECKOUT_SESSION_ID}", #is the page that user should be resirected to after sucessful payment
 #         cancel_url=request.build_absolute_uri(
 #             reverse('myapp:failed')),
 #     )
@@ -168,22 +168,61 @@ def my_listings(request):
 #     order.amount = int(product.price * 100)
 #     order.save()
 #     return JsonResponse({'sessionId': checkout_session.id})
-#
-#
-# class PaymentSuccessView(TemplateView):
-#     template_name = 'myapp/payment_success.html'
-#
-#     def get(self, request, *args, **kwargs):
-#         session_id = request.GET.get('session_id')
-#         if session_id is None:
-#             return HttpResponseNotFound()
-#         session = stripe.checkout.Session.retrieve(session_id)
-#         stripe.api_key = settings.STRIPE_SECRET_KEY
-#         order = get_object_or_404(OrderDetail, stripe_payment_intent=session.payment_intent)
-#         order.has_paid = True
-#         order.save()
-#         return render(request, self.template_name)
-#
-#
-# class PaymentFailedView(TemplateView):
-#     template_name = 'myapp/payment_failed.html'
+
+
+@csrf_exempt
+def create_checkout_session(request, id):
+    product = get_object_or_404(Product, pk=id)
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    checkout_session = stripe.checkout.Session.create(
+        customer_email=request.user.email,
+        payment_method_types=['card'],
+        line_items=[
+            {
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {
+                        'name': product.name,
+                    },
+                    'unit_amount': int(product.price * 100),
+                },
+                'quantity': 1,
+            }
+        ],
+        mode='payment',
+        success_url=request.build_absolute_uri(reverse('myapp:success')) + "?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url=request.build_absolute_uri(reverse('myapp:failed')),
+    )
+
+    order = OrderDetail()
+    order.customer_username = request.user.username
+    order.product = product
+    order.amount = int(product.price * 100)
+
+    if 'payment_intent' in checkout_session:
+        order.stripe_payment_intent = checkout_session['payment_intent']
+
+    order.save()
+    return JsonResponse({'sessionId': checkout_session.id})
+
+
+class PaymentSuccessView(TemplateView):
+    template_name = 'myapp/payment_success.html'
+
+
+    # we would use if req.method == get if it was a function based view but since this is a class based view. below is the way to do it
+
+    def get(self, request, *args, **kwargs):
+        session_id = request.GET.get('session_id')
+        if session_id is None:
+            return HttpResponseNotFound()
+        session = stripe.checkout.Session.retrieve(session_id)
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        order = get_object_or_404(OrderDetail, stripe_payment_intent=session.payment_intent)
+        order.has_paid = True
+        order.save()
+        return render(request, self.template_name)
+
+
+class PaymentFailedView(TemplateView):
+    template_name = 'myapp/payment_failed.html'
